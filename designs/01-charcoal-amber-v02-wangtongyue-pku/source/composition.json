@@ -1,0 +1,11 @@
+{
+  "base": "pr3-artwork.png",
+  "overlay": {
+    "enabled": false,
+    "file": "lion-v6.png",
+    "x": 452,
+    "y": 203,
+    "width": 186,
+    "height": 190
+  }
+}
