@@ -4,7 +4,9 @@
 
 **参与方式：新建分支 → 上传设计 → 提交 Pull Request → 讨论与评审 → 合并收录。**
 
-[如何提交设计](CONTRIBUTING.md) · [修改现有设计](docs/EDITING.md) · [设计说明模板](templates/design/README.md) · [查看 PR](https://github.com/GhostJjaaxx/team-kit-design/pulls) · [讨论想法](https://github.com/GhostJjaaxx/team-kit-design/issues)
+[如何提交设计](CONTRIBUTING.md) · [版本保留规则](docs/VERSIONING.md) · [修改现有设计](docs/EDITING.md) · [设计说明模板](templates/design/README.md) · [查看 PR](https://github.com/GhostJjaaxx/team-kit-design/pulls) · [讨论想法](https://github.com/GhostJjaaxx/team-kit-design/issues)
+
+**每次迭代新增版本目录，保留已收录设计。** 例如从 `03-white-blue-code/` 复制完整材料到 `03-white-blue-code-v02-yourname/` 后修改新目录，旧版图片、配置和源文件不替换。PR 中同时提供新旧预览和来源版本，首页保留旧版入口。详细步骤见[版本保留规则](docs/VERSIONING.md)。
 
 ## 首批设计
 
@@ -22,7 +24,7 @@
 
 ## 你可以做什么
 
-- **迭代已有方案：** 修改对应 `designs/<方案>/`，更新预览和说明，保留原作者与变更记录。
+- **迭代已有方案：** 复制完整方案到新的版本目录，只修改新目录；保留旧版、原作者及来源版本，并提供新旧预览对照。
 - **新增或独立衍生方案：** 复制设计说明模板到新的方案目录，附 `preview.png`；衍生设计写清来源。
 - **参与讨论：** 在 PR 中提出具体修改建议，或开 Issue 讨论配色、版型、队徽与印花。
 
@@ -35,15 +37,18 @@ designs/
   01-charcoal-amber/       炭灰琥珀橙
   02-cream-burgundy/       奶油白酒红
   03-white-blue-code/      白浅蓝代码渐变
+  03-white-blue-code-v02-yourname/  后续版本目录示例，按实际投稿新增
 templates/design/         新方案说明模板
 scripts/render-design.ps1  本地合成底图与可选胸标
-.github/                  PR 模板
+.github/                  PR 模板与设计历史检查
+scripts/check-design-versions.py  检查旧版未被覆盖或删除
 CONTRIBUTING.md            网页与 Git 投稿步骤
 docs/EDITING.md            素材说明与本地修改教程
+docs/VERSIONING.md         版本目录、旧稿保留与待合并 PR 整理
 docs/MAINTAINERS.md        成员与审核管理说明
 ```
 
-每个方案至少包含 `README.md` 和 `preview.png`。补充视图放入 `previews/`，底图、独立素材、合成配置或分层工程放入 `source/`，在说明中写清文件类型和编辑能力。脚本默认将试做结果输出到 `generated/`；确认后再更新方案预览并提交 PR。沿用固定文件路径，旧版本可从 Git 历史中查看。
+每个版本至少包含 `README.md` 和真正的 PNG 格式 `preview.png`。补充视图放入 `previews/`，底图、独立素材、合成配置或分层工程放入 `source/`，在说明中写清文件类型和编辑能力。脚本默认将试做结果输出到 `generated/`；确认后同步到本次新增版本目录。已有目录的根 `README.md` 可补版本导航或更正说明，其余材料保留原样；不能仅以 Git 历史或一张旧预览代替完整版本。
 
 ## 成员与审核
 

@@ -1,93 +1,81 @@
 # 修改现有设计
 
-三个方案的 `source/` 都保存了底图、独立胸标、合成配置、提示词及来源说明。你可以直接调整胸标，也可以在图像编辑器或 AI 图像工具中继续修改底图，再通过 PR 分享。
+**先完整复制已有方案到新的同级目录，再编辑新副本。** 已收录版本中的预览、源图、字体和配置都要保留。新目录首次合并前，可在同一 PR 中反复修改；首次合并后，再次迭代需要另建目录。完整要求见[版本保留规则](VERSIONING.md)。
 
-首批 `preview.png` 是无胸标的选定效果图，保持原样。合成脚本默认输出到 `generated/`，先查看效果，再决定是否更新公开预览。
+旧方案目录中的工程教程用于说明原版本的制作方法，可能带有默认旧路径。迭代时以本教程的新目录命令为准，不要把结果回写父版本。仅查看旧版的复现结果时，可以继续输出到本地 `generated/`。
 
 ## 先认识这些文件
 
 | 文件 | 用途与限制 |
 | --- | --- |
-| `source/base.png` | 无胸标底图；衣服轮廓、文字、纹样和质感已经合成在一张图片中 |
-| `source/lion-v6.png` | 前两款的独立透明队徽，可选叠加 |
-| `source/robot-navy.png` | 白浅蓝款的独立透明机器人胸标，可选叠加 |
-| `source/robot-original.jpg` | 白浅蓝款机器人胸标的参考原图，用于追溯来源 |
-| `source/composition.json` | 底图路径、胸标路径、坐标、大小和默认启用状态 |
-| `source/PROMPTS.md` | 设计提示词，供继续编辑或生成时参考；不保证重复生成完全相同的图片 |
-| `source/SOURCE.md` | 材料来源和制作过程说明 |
+| `source/base.png` | 无胸标底图；轮廓、文字、纹样和质感合成在一张图中 |
+| `source/lion-v6.png` / `source/robot-navy.png` | 可选叠加的独立透明胸标 |
+| `source/composition.json` | 底图、胸标、坐标、大小和默认启用状态 |
+| `source/PROMPTS.md` | 历史提示词，不保证再次 AI 生成得到相同图片 |
+| `source/SOURCE.md` | 材料来源和制作过程 |
 
-这些是可继续加工的位图材料，尚无 PSD、AI、SVG 等分层工程。合成脚本只叠加胸标，不能单独修改底图中的姓名、衣服纹样或文字；需要使用图像编辑工具、AI 编辑，或重新绘制相应部分。最终印花生产稿需另行制作。
+当前三款提供位图底图和独立透明素材，尚无可单独编辑衣服文字和纹样的分层工程。修改底图需要图像编辑工具或重新绘制相应部分；最终生产仍需厂家纸样与规格。
 
-## 本地生成预览
+## 第一步：复制完整版本
 
-需要 Windows，以及 Windows PowerShell 5.1 或 PowerShell 7。脚本使用 `System.Drawing`，没有额外的 Python 或 Node 依赖。打开 PowerShell，进入仓库根目录，运行以下命令。
+先保存当前未提交工作，再按[投稿教程](../CONTRIBUTING.md)同步目标分支、创建自己的工作分支。如果已经有会覆盖旧版的 PR，请先看[迁移步骤](VERSIONING.md#已有-pr-会覆盖旧版怎么办)，避免丢失现有修改。
 
-按原样输出炭灰款底图：
+在仓库根目录打开 PowerShell。下面以白浅蓝为例，将 `yourname` 换成自己的 GitHub 用户名的小写形式；也可以选择其他父版本：
 
 ```powershell
-& .\scripts\render-design.ps1 -Design 01-charcoal-amber
-```
-
-默认生成 `generated/01-charcoal-amber/preview.png`。三款的配置都将胸标设为默认关闭；以下命令为奶油白款生成带队徽的比较图：
-
-```powershell
-& .\scripts\render-design.ps1 -Design 02-cream-burgundy -WithLogo
-```
-
-白浅蓝款使用机器人胸标：
-
-```powershell
-& .\scripts\render-design.ps1 -Design 03-white-blue-code -WithLogo
-```
-
-默认输出文件已经存在时，脚本会停止，避免意外覆盖。确认重做时添加 `-Force`，或用 `-OutputPath` 指定另一个文件：
-
-```powershell
-& .\scripts\render-design.ps1 -Design 01-charcoal-amber -WithLogo -OutputPath .\generated\01-charcoal-amber\with-logo.png
-& .\scripts\render-design.ps1 -Design 01-charcoal-amber -WithLogo -Force
-```
-
-如果 Windows 阻止执行下载的脚本，请先检查脚本内容，再按你的电脑或学校的执行策略处理，无需为本仓库全局修改执行策略。
-
-## 调整胸标
-
-编辑对应方案的 `source/composition.json`。例如炭灰款：
-
-```json
-{
-  "base": "base.png",
-  "overlay": {
-    "enabled": false,
-    "file": "lion-v6.png",
-    "x": 452,
-    "y": 203,
-    "width": 186,
-    "height": 190
-  }
+$parentDesign = '03-white-blue-code'
+$newDesign = '03-white-blue-code-v02-yourname'
+$newDesignPath = Join-Path .\designs $newDesign
+if (Test-Path -LiteralPath $newDesignPath) {
+    throw "目标目录已存在，请换一个唯一名称：$newDesignPath"
 }
+Copy-Item -LiteralPath (Join-Path .\designs $parentDesign) -Destination $newDesignPath -Recurse
+git rev-parse origin/main
 ```
 
-`base` 和 `file` 指向该方案 `source/` 中的文件。坐标单位为像素，原点是整张底图左上角：`x` 向右增大，`y` 向下增大，`width` 和 `height` 是胸标绘制尺寸。调整尺寸时尽量保持原始宽高比，避免胸标变形。
+该命令复制整个目录，不是只复制预览。核对新目录包含旧版全部素材和说明后，再修改其中的文件。把输出的完整提交 SHA、父版本路径及链接和本次版本标签写入新目录 `README.md`，保留原作者及贡献记录。Fork 的目标远程如果叫 `upstream`，使用 `git rev-parse upstream/main`。
 
-默认 `enabled: false` 保留无胸标效果，运行时加 `-WithLogo` 可临时启用胸标。若决定把胸标作为方案的默认组成部分，再将 `enabled` 改为 `true`，并在 PR 中说明。更换素材时，把新素材放入 `source/`，更新 `file`，并补充来源说明。
+后文继续使用 `$newDesign` 和 `$newDesignPath`；若换了 PowerShell 窗口，请重新设置这两个变量。
 
-## 修改配色、文字或纹样
+## 第二步：编辑新版本
 
-1. 打开 `source/base.png`，参考 `source/PROMPTS.md` 继续编辑。使用 AI 工具时同时提供底图和具体修改要求。
-2. 将确认后的新底图保存为真正的 PNG；需要比较的版本先放进 `previews/` 或本地 `generated/`。
-3. 保留原方案的贡献者与来源记录。新增素材、工具和提示词写入相应说明；来源或授权不确定时标注“待确认”。
-4. 如果画布尺寸发生变化，同步调整胸标坐标与尺寸，重新运行合成命令检查效果。
+### 位图或胸标
 
-白浅蓝款的 `robot-original.jpg` 带有“豆包 AI”标记；透明胸标来自对参考图的线条提取。它们的完整作者、授权和生产适用范围仍待确认，不应把参考图或提取结果直接声明为原创。
-
-## 把确认的结果提交为 PR
-
-先按[投稿教程](../CONTRIBUTING.md)创建自己的分支。打开生成图片，检查正反面、胸标透明边缘、文字和尺寸；确认要让它成为方案新首图后，手动复制：
+只编辑 `$newDesignPath/source/` 中的材料。更换底图时保存为真正的 PNG，保留来源记录；画布尺寸改变后同步调整胸标坐标。PowerShell 合成需要 Windows PowerShell 5.1 或 PowerShell 7，使用系统的 `System.Drawing`。
 
 ```powershell
-Copy-Item -LiteralPath .\generated\01-charcoal-amber\preview.png -Destination .\designs\01-charcoal-amber\preview.png
+& .\scripts\render-design.ps1 -Design $newDesign
 ```
 
-将示例路径替换为自己的方案与实际输出文件。同步更新该方案 `README.md` 的变更记录，并提交相关 `source/` 材料。`generated/` 只是本地试做目录，不应作为投稿内容提交。
+默认输出到 `generated/<新目录名>/preview.png`，不会自动覆盖方案预览。需要比较带胸标效果时：
 
-PR 中附修改前后的预览，说明改了什么、为什么改，以及使用的命令或编辑工具。若修改了脚本，运行受影响方案的默认与带胸标合成，并检查已有文件的覆盖保护，将结果写进 PR。合并流程仍按仓库约定进行评审。
+```powershell
+& .\scripts\render-design.ps1 -Design $newDesign -WithLogo -OutputPath ".\generated\$newDesign\with-logo.png"
+```
+
+默认存在输出文件时会停止。确认重做后添加 `-Force`，或换一个 `-OutputPath`。脚本只叠加胸标，不会修改底图中的姓名、文字或纹样。
+
+`source/composition.json` 中的坐标以底图左上角为原点，单位为像素：`x` 向右、`y` 向下，`width` 和 `height` 为胸标尺寸。默认 `enabled: false` 保留无胸标效果；`-WithLogo` 可临时启用。素材和配置路径都相对于新版本的 `source/`，不要改成父版本路径。
+
+## 第三步：检查并同步新目录
+
+打开生成图片，检查正反面、边缘、文字、渐变和 EECS。确认效果后，将输出复制到**新目录**：
+
+```powershell
+Copy-Item -LiteralPath ".\generated\$newDesign\preview.png" -Destination (Join-Path $newDesignPath 'preview.png')
+```
+
+以上命令会更新尚未合并的新副本，不应将 `$newDesignPath` 设为父版本。新副本中保留用于生成预览的底图、独立素材和配置；不要把带胸标的成图回写成底图，以免再次合成时重复叠加。`generated/` 仅为本地试做目录，不提交。新版本 README 中记录实际使用的编辑命令、来源和变更，并修正复制过来但仍指向旧目录的命令。
+
+在首页图库追加新版本预览及说明链接，保留旧版入口。可以在旧版根 `README.md` 增加“后续版本”链接，不能改动旧目录中的其他文件。所有相对链接都要实际打开检查。
+
+## 第四步：检查并提交 PR
+
+```powershell
+git fetch origin main
+python scripts/check-design-versions.py --base origin/main
+```
+
+默认检查本地工作目录，包括尚未跟踪的新文件；只检查已提交内容可加 `--head HEAD`。目标分支已有新提交时，先保存工作、合并最新目标分支并解决冲突，再检查。Fork 按目标远程名改用 `upstream/main`。
+
+自动检查通过后仍要打开 PNG、核对完整源文件和链接。按[PR 模板](../.github/pull_request_template.md)附新旧预览、父版本、版本标签、基线 SHA、生成命令及结果。如果修改了合成脚本，应实际检查受影响方案的默认输出、带胸标输出和覆盖保护。只提交本次新目录及必要文档、工具变更，不提交旧设计素材的覆盖。
