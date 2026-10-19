@@ -5,7 +5,12 @@
 [CmdletBinding()]
 param(
     [Parameter(Mandatory = $true)]
-    [ValidateSet('01-charcoal-amber', '02-cream-burgundy', '03-white-blue-code')]
+    [ValidateScript({
+        if ($_ -cnotmatch '\A[a-z0-9]+(?:-[a-z0-9]+)*\z') {
+            throw 'Design must be a lowercase directory slug containing only letters, digits, and single hyphens.'
+        }
+        $true
+    })]
     [string]$Design,
 
     [string]$OutputPath,
