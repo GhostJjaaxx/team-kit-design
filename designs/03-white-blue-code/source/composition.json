@@ -1,0 +1,11 @@
+{
+  "base": "base.png",
+  "overlay": {
+    "enabled": false,
+    "file": "robot-navy.png",
+    "x": 218,
+    "y": 230,
+    "width": 150,
+    "height": 131
+  }
+}

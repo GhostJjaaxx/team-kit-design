@@ -4,7 +4,7 @@
 
 **参与方式：新建分支 → 上传设计 → 提交 Pull Request → 讨论与评审 → 合并收录。**
 
-[如何提交设计](CONTRIBUTING.md) · [设计说明模板](templates/design/README.md) · [查看 PR](https://github.com/GhostJjaaxx/team-kit-design/pulls) · [讨论想法](https://github.com/GhostJjaaxx/team-kit-design/issues)
+[如何提交设计](CONTRIBUTING.md) · [修改现有设计](docs/EDITING.md) · [设计说明模板](templates/design/README.md) · [查看 PR](https://github.com/GhostJjaaxx/team-kit-design/pulls) · [讨论想法](https://github.com/GhostJjaaxx/team-kit-design/issues)
 
 ## 首批设计
 
@@ -16,7 +16,9 @@
 | [方案说明](designs/01-charcoal-amber/README.md) | [方案说明](designs/02-cream-burgundy/README.md) | [方案说明](designs/03-white-blue-code/README.md) |
 | 深色底、琥珀橙线条、电路元素 | 浅色底、酒红线条、电路元素 | 白色底、浅蓝代码纹样、侧向 EECS |
 
-首批文件仅为 PNG 概念效果图，暂无 PSD、AI、SVG 等可编辑源文件。图案、文字和面料质感用于讨论，生产稿需另行制作。背面的 `PLAYER NAME` 为姓名占位。
+三款现已附上原始底图、独立胸标、合成配置和设计提示词，可以调整胸标的位置与大小，或继续编辑底图。[修改教程](docs/EDITING.md)提供了可直接运行的命令。首批三张 `preview.png` 保持原样，均不带胸标；胸标是可选素材。
+
+这些材料是平面图片与合成素材，尚无 PSD、AI、SVG 等分层工程；衣服文字、纹样和质感仍在底图中。图案用于讨论，印花生产稿需另行制作。背面的 `PLAYER NAME` 为姓名占位。
 
 ## 你可以做什么
 
@@ -34,12 +36,14 @@ designs/
   02-cream-burgundy/       奶油白酒红
   03-white-blue-code/      白浅蓝代码渐变
 templates/design/         新方案说明模板
+scripts/render-design.ps1  本地合成底图与可选胸标
 .github/                  PR 模板
 CONTRIBUTING.md            网页与 Git 投稿步骤
+docs/EDITING.md            素材说明与本地修改教程
 docs/MAINTAINERS.md        成员与审核管理说明
 ```
 
-每个方案至少包含 `README.md` 和 `preview.png`。补充视图放入 `previews/`，真正的可编辑文件放入 `source/`。沿用固定文件路径，旧版本可从 Git 历史中查看。
+每个方案至少包含 `README.md` 和 `preview.png`。补充视图放入 `previews/`，底图、独立素材、合成配置或分层工程放入 `source/`，在说明中写清文件类型和编辑能力。脚本默认将试做结果输出到 `generated/`；确认后再更新方案预览并提交 PR。沿用固定文件路径，旧版本可从 Git 历史中查看。
 
 ## 成员与审核
 
@@ -49,4 +53,4 @@ docs/MAINTAINERS.md        成员与审核管理说明
 
 ## 素材说明
 
-首批图片由仓库负责人选定并提供，属于 AI 辅助概念设计。每个方案记录素材来源、贡献者和后续修改；新增素材请注明来源及授权状态。仓库暂未指定开源许可证，公开展示不等于授予任意使用或商用许可。
+首批图片由仓库负责人选定并提供，属于通过内置 `image_gen` 工具制作的 AI 辅助概念设计。各方案的 `source/SOURCE.md` 记录补充素材的来源，`source/PROMPTS.md` 保存设计提示词。原始设计与素材的完整署名、授权状态仍待确认；新增素材也请注明来源及授权状态。仓库暂未指定开源许可证，公开展示不等于授予任意使用或商用许可。
