@@ -6,9 +6,9 @@
 
 [如何提交设计](CONTRIBUTING.md) · [修改现有设计](docs/EDITING.md) · [设计说明模板](templates/design/README.md) · [查看 PR](https://github.com/GhostJjaaxx/team-kit-design/pulls) · [讨论想法](https://github.com/GhostJjaaxx/team-kit-design/issues)
 
-## 首批设计
+## 当前设计
 
-以下三张是 2026-10-19 选定的起始效果图，原样收录；每个方案都可以独立迭代。点击图片查看完整尺寸。
+以下三款从 2026-10-19 选定的首批效果图开始迭代。白浅蓝款已更新为可编辑符号版本；另外两款保留首批效果图。点击图片查看完整尺寸。
 
 | 01 · 炭灰琥珀橙 | 02 · 奶油白酒红 | 03 · 白浅蓝代码渐变 |
 | :---: | :---: | :---: |
@@ -16,9 +16,9 @@
 | [方案说明](designs/01-charcoal-amber/README.md) | [方案说明](designs/02-cream-burgundy/README.md) | [方案说明](designs/03-white-blue-code/README.md) |
 | 深色底、琥珀橙线条、电路元素 | 浅色底、酒红线条、电路元素 | 白色底、浅蓝代码纹样、侧向 EECS |
 
-三款现已附上原始底图、独立胸标、合成配置和设计提示词，可以调整胸标的位置与大小，或继续编辑底图。[修改教程](docs/EDITING.md)提供了可直接运行的命令。首批三张 `preview.png` 保持原样，均不带胸标；胸标是可选素材。
+三款现已附上底图、独立胸标、合成配置和设计提示词，可以调整胸标的位置与大小，或继续编辑底图。[修改教程](docs/EDITING.md)提供了可直接运行的命令。当前三款预览均不带胸标；胸标是可选素材。
 
-这些材料是平面图片与合成素材，尚无 PSD、AI、SVG 等分层工程；衣服文字、纹样和质感仍在底图中。图案用于讨论，印花生产稿需另行制作。背面的 `PLAYER NAME` 为姓名占位。
+白浅蓝款另有[符号编辑工程](designs/03-white-blue-code/source/symbols/README.md)：1,150 项固定文本排布、可编辑文字 SVG、转曲 SVG 和内嵌分层总图，可按 JSON 配置确定性渲染。大字保留原颗粒纹理，仅补全两个 E 的底横；大字和衣服底图仍是位图，因此工程并非全矢量。前两款仍以位图材料为主，尚无分层工程。所有效果图均为 1536 × 1024 的概念图，印花生产稿需另行制作。背面的 `PLAYER NAME` 为姓名占位。
 
 ## 你可以做什么
 
@@ -37,6 +37,8 @@ designs/
   03-white-blue-code/      白浅蓝代码渐变
 templates/design/         新方案说明模板
 scripts/render-design.ps1  本地合成底图与可选胸标
+scripts/render-white-blue.cjs  白浅蓝符号工程的固定配置渲染器
+scripts/white-blue-renderer/   锁定的 Node 渲染依赖
 .github/                  PR 模板
 CONTRIBUTING.md            网页与 Git 投稿步骤
 docs/EDITING.md            素材说明与本地修改教程
@@ -53,4 +55,4 @@ docs/MAINTAINERS.md        成员与审核管理说明
 
 ## 素材说明
 
-首批图片由仓库负责人选定并提供，属于通过内置 `image_gen` 工具制作的 AI 辅助概念设计。各方案的 `source/SOURCE.md` 记录补充素材的来源，`source/PROMPTS.md` 保存设计提示词。原始设计与素材的完整署名、授权状态仍待确认；新增素材也请注明来源及授权状态。仓库暂未指定开源许可证，公开展示不等于授予任意使用或商用许可。
+首批图片由仓库负责人选定并提供，属于通过内置 `image_gen` 工具制作的 AI 辅助概念设计；白浅蓝款后续符号改版使用固定文本与脚本合成，日常渲染不调用 AI。各方案的 `source/SOURCE.md` 记录材料来源，`source/PROMPTS.md` 保存设计提示词及改版过程。原始设计与素材的完整署名、授权状态仍待确认；白浅蓝工程所附 Source Code Pro 字体保留了独立的 OFL 许可。新增素材也请注明来源及授权状态。仓库暂未指定整体开源许可证，公开展示不等于授予任意使用或商用许可。

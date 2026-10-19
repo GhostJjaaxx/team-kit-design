@@ -8,3 +8,5 @@ Desktop.ini
 .idea/
 .vscode/
 generated/
+node_modules/
+__pycache__/

@@ -2,7 +2,9 @@
 
 三个方案的 `source/` 都保存了底图、独立胸标、合成配置、提示词及来源说明。你可以直接调整胸标，也可以在图像编辑器或 AI 图像工具中继续修改底图，再通过 PR 分享。
 
-首批 `preview.png` 是无胸标的选定效果图，保持原样。合成脚本默认输出到 `generated/`，先查看效果，再决定是否更新公开预览。
+当前三个 `preview.png` 均无胸标。前两款保留首批效果图，白浅蓝款已更新为可编辑符号版本，原图保存在它的 `source/symbols/reference-original.png`。合成脚本默认输出到 `generated/`，先查看效果，再决定是否更新公开预览。
+
+**修改白浅蓝的小符号、排布或渐变：** 请使用[符号工程教程](../designs/03-white-blue-code/source/symbols/README.md)。它通过 Node 读取固定 JSON，输出文字版与转曲版 SVG、透明符号 PNG、分层总图及预览；无需 Python 或 AI。下文的 PowerShell 脚本仍适合给三款成图叠加可选胸标。
 
 ## 先认识这些文件
 
@@ -15,12 +17,13 @@
 | `source/composition.json` | 底图路径、胸标路径、坐标、大小和默认启用状态 |
 | `source/PROMPTS.md` | 设计提示词，供继续编辑或生成时参考；不保证重复生成完全相同的图片 |
 | `source/SOURCE.md` | 材料来源和制作过程说明 |
+| 白浅蓝款的 `source/symbols/` | 固定文本排布、字体、清理底图、独立大字及 SVG 分层总图；见该目录教程 |
 
-这些是可继续加工的位图材料，尚无 PSD、AI、SVG 等分层工程。合成脚本只叠加胸标，不能单独修改底图中的姓名、衣服纹样或文字；需要使用图像编辑工具、AI 编辑，或重新绘制相应部分。最终印花生产稿需另行制作。
+前两款是可继续加工的位图材料，尚无分层工程。白浅蓝款已有 SVG 分层总图，其中小符号可由真实文本编辑或转曲；衣服底图和 EECS 颗粒大字仍是位图，不能称为全矢量工程。PowerShell 合成脚本只叠加胸标，不会修改底图中的姓名、文字或纹样。所有图像仍为概念效果图，最终成衣纸样与印花生产稿需另行制作。
 
 ## 本地生成预览
 
-需要 Windows，以及 Windows PowerShell 5.1 或 PowerShell 7。脚本使用 `System.Drawing`，没有额外的 Python 或 Node 依赖。打开 PowerShell，进入仓库根目录，运行以下命令。
+本节的胸标合成需要 Windows，以及 Windows PowerShell 5.1 或 PowerShell 7。脚本使用 `System.Drawing`，没有额外的 Python 或 Node 依赖。打开 PowerShell，进入仓库根目录，运行以下命令。
 
 按原样输出炭灰款底图：
 
@@ -72,6 +75,8 @@
 默认 `enabled: false` 保留无胸标效果，运行时加 `-WithLogo` 可临时启用胸标。若决定把胸标作为方案的默认组成部分，再将 `enabled` 改为 `true`，并在 PR 中说明。更换素材时，把新素材放入 `source/`，更新 `file`，并补充来源说明。
 
 ## 修改配色、文字或纹样
+
+白浅蓝的小符号优先在 `source/symbols/symbols-layout.json` 中修改，然后使用 [Node 渲染器](../designs/03-white-blue-code/source/symbols/README.md)复现；直接涂改 `base.png` 不会同步到符号工程。原背部两行字、大字颗粒和面料仍属于位图材料。其他位图改动可按以下步骤进行：
 
 1. 打开 `source/base.png`，参考 `source/PROMPTS.md` 继续编辑。使用 AI 工具时同时提供底图和具体修改要求。
 2. 将确认后的新底图保存为真正的 PNG；需要比较的版本先放进 `previews/` 或本地 `generated/`。

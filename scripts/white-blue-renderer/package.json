@@ -1,0 +1,13 @@
+{
+  "name": "team-kit-white-blue-renderer",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Pinned renderer for the white-blue shirt symbol artwork",
+  "engines": {
+    "node": ">=20.9.0"
+  },
+  "dependencies": {
+    "@napi-rs/canvas": "0.1.100",
+    "sharp": "0.35.5"
+  }
+}

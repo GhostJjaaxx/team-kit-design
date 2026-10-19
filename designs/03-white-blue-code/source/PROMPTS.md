@@ -1,6 +1,6 @@
 # 白浅蓝代码渐变 · 生成与修改提示词
 
-工具：内置 image_gen。下文是制作丰富代码纹样与侧向 EECS 时使用的实际提示词，要求保留空白胸部，输出作为当前 base.png。
+工具：内置 image_gen。下文是首批图制作丰富代码纹样与侧向 EECS 时使用的实际提示词，要求保留空白胸部。该阶段原图现保存在 `symbols/reference-original.png`；当前 `base.png` 已更新为下文记录的 v2。
 
 ```text
 Use case: precise-object-edit.
@@ -20,3 +20,17 @@ No other modifications. Preserve the 1536x1024 landscape composition.
 ```
 
 机器人胸标由另行提供的原图提取并叠加，不在这段提示词中生成。当前默认配置关闭胸标；如需添加，可使用统一脚本的 -WithLogo。以 base.png 为输入继续编辑时，只需描述本次需要改变的部分；AI 重新生成不保证逐像素复现。
+
+## 2026-10-19 · v2 符号编辑工程
+
+贡献者：@GhostJjaaxx。本次改版先用内置 `image_gen` 辅助清理旧印花，再通过本地脚本整理可继续修改的图层与固定排布。清理底图已经保存，日常渲染不再依赖提示词或 AI 生成。
+
+底图清理提示词要点（整理）：以首批 1536 × 1024 白浅蓝正反面图为编辑目标；去除两件上衣的浅蓝小符号和前身大 EECS，恢复白色织物，保持原服装轮廓、皱褶、缝线、领口、光影、背景与画面尺寸。背部 `PKU EECS` 和 `PLAYER NAME` 保持原拼写、位置、形状和颜色；不添加 logo 或裤子。生成结果只在原印花清理蒙版内合成，其余部分沿用原图。
+
+- 保留原图为 `symbols/reference-original.png`，保存清理后的 `blank-garment.png` 与清理范围记录 `cleanup-mask.png`。
+- 保留 EECS 的原颗粒纹理和 C/S 字形，仅补两个 E 的底横。透明大字保存为 `lettering.png`，原轮廓与补笔记录保存为 `lettering-layout.json`。
+- 将小符号替换为真实的代码与数学文本，固定在 `symbols-layout.json` 中：1,150 项排布、168 种文本片段、105 种字符。前图右侧与背图左侧对应同一穿着者左侧；背部原两行字保持不变。
+- 固定使用 Source Code Pro Regular 2.038，并随工程保存字体及 OFL 许可。Node 渲染器生成可编辑文字 SVG、转曲 SVG、透明符号 PNG，以及按底图 → 符号 → 大字顺序内嵌的 `master.svg`。
+- 日常修改以已保存的 JSON 和图层为准。运行命令、依赖版本与检查方式见[符号工程教程](symbols/README.md)；历史 Python 构建脚本仅供追溯初稿过程，不能直接覆盖后续手改排布。
+
+当前 `preview.png` 与 `base.png` 使用 v2 无胸标成图。图中的代码和数学片段用于纹样，仍需结合实际印制尺寸检查可读性；混合位图与矢量的概念工程不等同于生产稿。
