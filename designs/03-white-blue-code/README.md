@@ -45,3 +45,7 @@
 | --- | --- | --- |
 | 2026-10-19 | @GhostJjaaxx | 选定并原样收录首批方案，建立说明与迭代入口 |
 | 2026-10-19 | @GhostJjaaxx | 补充底图、机器人胸标及参考原图、合成配置、提示词与来源说明，保留首批预览原样 |
+
+## 后续版本
+
+- [v02 · @wangtongyue-pku](../03-white-blue-code-v02-wangtongyue-pku/README.md)：延续白蓝方向，采用蓝色 V 领、斜向运动线条、像素与网格纹样，加入羽毛球图案；新版未沿用原版侧向 EECS 与密集微代码字形。[查看新版预览](../03-white-blue-code-v02-wangtongyue-pku/preview.png)。本目录的预览与源文件保留原样。

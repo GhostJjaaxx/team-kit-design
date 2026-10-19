@@ -43,3 +43,7 @@
 | --- | --- | --- |
 | 2026-10-19 | @GhostJjaaxx | 选定并原样收录首批方案，建立说明与迭代入口 |
 | 2026-10-19 | @GhostJjaaxx | 补充底图、独立队徽、合成配置、提示词与来源说明，保留首批预览原样 |
+
+## 后续版本
+
+- [v02 · @wangtongyue-pku](../02-cream-burgundy-v02-wangtongyue-pku/README.md)：保留白色与酒红方向，调整配色比例和线条布局，加入羽毛球图案、校园塔景与水面剪影。[查看新版预览](../02-cream-burgundy-v02-wangtongyue-pku/preview.png)。本目录的预览与源文件保留原样。

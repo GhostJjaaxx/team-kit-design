@@ -43,3 +43,7 @@
 | --- | --- | --- |
 | 2026-10-19 | @GhostJjaaxx | 选定并原样收录首批方案，建立说明与迭代入口 |
 | 2026-10-19 | @GhostJjaaxx | 补充底图、独立队徽、合成配置、提示词与来源说明，保留首批预览原样 |
+
+## 后续版本
+
+- [v02 · @wangtongyue-pku](../01-charcoal-amber-v02-wangtongyue-pku/README.md)：保留炭灰与琥珀橙配色，调整电路线条和斜向运动纹样，加入羽毛球胸部图案。[查看新版预览](../01-charcoal-amber-v02-wangtongyue-pku/preview.png)。本目录的预览与源文件保留原样。

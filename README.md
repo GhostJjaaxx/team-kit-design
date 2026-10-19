@@ -22,6 +22,16 @@
 
 这些材料是平面图片与合成素材，尚无 PSD、AI、SVG 等分层工程；衣服文字、纹样和质感仍在底图中。图案用于讨论，印花生产稿需另行制作。背面的 `PLAYER NAME` 为姓名占位。
 
+## 后续版本 · PR #3
+
+以下 v02 来自 @wangtongyue-pku 的三款迭代，分别完整保存在新的同级目录；首批设计与全部源文件继续保留。新版提供完整平面位图及继承素材，目前没有新增分层工程，具体编辑能力见各版说明。
+
+| 01 · 炭灰琥珀橙 v02 | 02 · 奶油白酒红 v02 | 03 · 白浅蓝代码渐变 v02 |
+| :---: | :---: | :---: |
+| [![炭灰琥珀橙 v02](designs/01-charcoal-amber-v02-wangtongyue-pku/preview.png)](designs/01-charcoal-amber-v02-wangtongyue-pku/preview.png) | [![奶油白酒红 v02](designs/02-cream-burgundy-v02-wangtongyue-pku/preview.png)](designs/02-cream-burgundy-v02-wangtongyue-pku/preview.png) | [![白浅蓝代码渐变 v02](designs/03-white-blue-code-v02-wangtongyue-pku/preview.png)](designs/03-white-blue-code-v02-wangtongyue-pku/preview.png) |
+| [新版说明与源文件](designs/01-charcoal-amber-v02-wangtongyue-pku/README.md) · [父版本](designs/01-charcoal-amber/README.md) | [新版说明与源文件](designs/02-cream-burgundy-v02-wangtongyue-pku/README.md) · [父版本](designs/02-cream-burgundy/README.md) | [新版说明与源文件](designs/03-white-blue-code-v02-wangtongyue-pku/README.md) · [父版本](designs/03-white-blue-code/README.md) |
+| 保留炭灰与琥珀橙配色，调整电路线条和斜向运动纹样，加入羽毛球胸部图案。 | 保留白色与酒红方向，调整配色比例和线条布局，加入羽毛球图案、校园塔景与水面剪影。 | 延续白蓝方向，采用蓝色 V 领、斜向运动线条、像素与网格纹样，加入羽毛球图案；新版未沿用原版侧向 EECS 与密集微代码字形。 |
+
 ## 你可以做什么
 
 - **迭代已有方案：** 复制完整方案到新的版本目录，只修改新目录；保留旧版、原作者及来源版本，并提供新旧预览对照。
